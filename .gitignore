@@ -6,6 +6,7 @@ streamlit_venv/
 flower_data/
 *.ckpt
 *.mat
+*.credentials
 
 # C extensions
 *.so

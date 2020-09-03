@@ -7,7 +7,7 @@ mkdir data/output
 mkdir -p ~/.streamlit/
 echo "\
 [general]\n\
-email = \"your@domain.com\"\n\
+email = \"steven.vuong@foundersfactory.co\"\n\
 " > ~/.streamlit/credentials.toml
 echo "\
 [server]\n\
