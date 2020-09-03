@@ -33,15 +33,15 @@ if file_up is not None:
     st.write("Processing..")
 
     image.save(f'./data/input/tmp.png')
-    subprocess.run([
-        'python3', 
-        'evaluate.py',
-        '--checkpoint',
-        f'./models/{style_image_name}.ckpt',
-        '--in-path',
-        './data/input/',
-        '--out-path',
-        './data/output/'
-        ])
-    image = Image.open('./data/output/tmp.png')
-    st.image(image, caption="Processed Image", use_column_width=True)
+    # subprocess.run([
+    #     'python3', 
+    #     'evaluate.py',
+    #     '--checkpoint',
+    #     f'./models/{style_image_name}.ckpt',
+    #     '--in-path',
+    #     './data/input/',
+    #     '--out-path',
+    #     './data/output/'
+    #     ])
+    # image = Image.open('./data/output/tmp.png')
+    # st.image(image, caption="Processed Image", use_column_width=True)
