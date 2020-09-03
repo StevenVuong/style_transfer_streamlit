@@ -6,7 +6,7 @@ import subprocess
 from PIL import Image
 
 # ignore deprecation warning
-st.set_option('deprecation.showfileUploaderEncoding', False)
+#st.set_option('deprecation.showfileUploaderEncoding', False)
 st.title('Style Generator')
 
 style_option = None
