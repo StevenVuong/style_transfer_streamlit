@@ -1,4 +1,6 @@
-examples/
+examples/content
+examples/style
+examples/results
 streamlit_venv/
 *.md
 __pycache__
