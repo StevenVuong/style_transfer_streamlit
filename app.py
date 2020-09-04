@@ -4,6 +4,8 @@ import streamlit as st
 import os
 import subprocess
 from PIL import Image
+from io import BytesIO
+import base64
 
 # ignore deprecation warning
 st.set_option('deprecation.showfileUploaderEncoding', False)
@@ -22,6 +24,17 @@ st.image(style_image, width=250)
 
 # Upload Image
 file_up = st.file_uploader("Upload an image", type=["jpg", "png", "jpeg"])
+
+def get_image_download_link(img):
+	"""Generates a link allowing the PIL image to be downloaded
+	in:  PIL image
+	out: href string
+	"""
+	buffered = BytesIO()
+	img.save(buffered, format="JPEG")
+	img_str = base64.b64encode(buffered.getvalue()).decode()
+	href = f'<a href="data:file/jpg;base64,{img_str}">Download result</a>'
+	return href
 
 if file_up is not None:
 
@@ -45,3 +58,4 @@ if file_up is not None:
         ])
     image = Image.open('./data/output/tmp.png')
     st.image(image, caption="Processed Image", use_column_width=True)
+    st.markdown(get_image_download_link(image), unsafe_allow_html=True)
