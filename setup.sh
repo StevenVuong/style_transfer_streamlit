@@ -21,3 +21,5 @@ wget --no-check-certificate 'https://docs.google.com/uc?export=folders/0B9jhaT37
 mkdir ~/.streamlit/data
 mkdir ~/.streamlit/data/input 
 mkdir ~/.streamlit/data/output
+
+pip install tensorflow==2.3.0
