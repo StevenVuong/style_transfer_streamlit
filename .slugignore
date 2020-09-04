@@ -1,0 +1,5 @@
+examples/
+streamlit_venv/
+*.md
+__pycache__
+data/
