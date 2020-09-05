@@ -2,6 +2,7 @@
 __pycache__/
 streamlit_venv/
 *.py[cod]
+data/
 *$py.class
 flower_data/
 *.ckpt

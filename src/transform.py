@@ -1,4 +1,4 @@
-import tensorflow as tf, pdb
+import tensorflow as tf
 
 WEIGHTS_INIT_STDEV = .1
 
