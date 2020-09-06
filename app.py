@@ -33,20 +33,19 @@ def get_image_download_link(img):
 	buffered = BytesIO()
 	img.save(buffered, format="JPEG")
 	img_str = base64.b64encode(buffered.getvalue()).decode()
-	href = f'<a href="data:file/jpg;base64,{img_str}">Download result</a>'
+	href = f'<a href="data:file/jpg;base64,{img_str}">Download Processed Image</a>'
 	return href
 
 if file_up is not None:
 
     # Display image
     image = Image.open(file_up)
-    image.save('./data/input/tmp.png')
     st.image(image, caption="Uploaded Image", use_column_width=True)
 
     st.write("")
     st.write("Processing..")
 
-    image.save(f'./data/input/tmp.png')
+    image.save('./data/input/tmp.png')
     subprocess.run([
         'python3', 
         'evaluate.py',
@@ -57,6 +56,7 @@ if file_up is not None:
         '--out-path',
         './data/output/'
         ])
+    print(os.listdir('./data/output/'))
     image = Image.open('./data/output/tmp.png')
     st.image(image, caption="Processed Image", use_column_width=True)
     st.markdown(get_image_download_link(image), unsafe_allow_html=True)
