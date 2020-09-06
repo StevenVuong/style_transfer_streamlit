@@ -40,6 +40,11 @@ if file_up is not None:
 
     # Display image
     image = Image.open(file_up)
+    # resize
+    im_width, im_height = image.size
+    resize_ratio = 512//im_height
+    image = image.resize((im_width*resize_ratio, im_height*resize_ratio), Image.ANTIALIAS)
+
     st.image(image, caption="Uploaded Image", use_column_width=True)
 
     st.write("")
