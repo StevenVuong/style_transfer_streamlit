@@ -61,6 +61,7 @@ if file_up is not None:
     image.save('./data/input/tmp.png')
 
     tf.reset_default_graph()
+    tf.keras.backend.clear_session()
     subprocess.run([
         'python3', 
         'evaluate.py',
