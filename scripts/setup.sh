@@ -1,6 +1,7 @@
 # install requirements
-python3 -m pip install tensorflow==2.3.0 --no-cache-dir
 python3 -m pip install -r requirements.txt
+
+cd ..
 
 # download models
 mkdir ./models

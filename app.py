@@ -44,7 +44,10 @@ if file_up is not None:
 
     st.write("")
     st.write("Processing..")
-
+    try:
+        os.remove('./data/output/tmp.png')
+    except:
+        print('No output file!')
     image.save('./data/input/tmp.png')
     subprocess.run([
         'python3', 
@@ -56,7 +59,6 @@ if file_up is not None:
         '--out-path',
         './data/output/'
         ])
-    print(os.listdir('./data/output/'))
     image = Image.open('./data/output/tmp.png')
     st.image(image, caption="Processed Image", use_column_width=True)
     st.markdown(get_image_download_link(image), unsafe_allow_html=True)
