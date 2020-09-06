@@ -6,6 +6,7 @@ import subprocess
 from PIL import Image
 from io import BytesIO
 import base64
+import numpy as np
 
 # ignore deprecation warning
 st.set_option('deprecation.showfileUploaderEncoding', False)
@@ -43,7 +44,7 @@ if file_up is not None:
 
     # resize, height=512
     im_width, im_height = image.size
-    resize_ratio = int(im_height/512)
+    resize_ratio = np.cel(im_height/512)
     image = image.resize((im_width*resize_ratio, im_height*resize_ratio), Image.ANTIALIAS)
 
     st.image(image, caption="Uploaded Image", use_column_width=True)
