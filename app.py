@@ -7,6 +7,7 @@ from PIL import Image
 from io import BytesIO
 import base64
 import numpy as np
+import tensorflow as tf
 
 # ignore deprecation warning
 st.set_option('deprecation.showfileUploaderEncoding', False)
@@ -59,6 +60,7 @@ if file_up is not None:
         print('No output file!')
     image.save('./data/input/tmp.png')
 
+    tf.reset_default_graph()
     subprocess.run([
         'python3', 
         'evaluate.py',
