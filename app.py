@@ -40,30 +40,34 @@ if file_up is not None:
 
     # Display image
     image = Image.open(file_up)
-    # resize
+
+    # resize, height=512
     im_width, im_height = image.size
-    resize_ratio = 512//im_height
+    resize_ratio = int(im_height/512)
     image = image.resize((im_width*resize_ratio, im_height*resize_ratio), Image.ANTIALIAS)
 
     st.image(image, caption="Uploaded Image", use_column_width=True)
+    
+    CWD=os.getcwd()
 
     st.write("")
     st.write("Processing..")
     try:
-        os.remove('./data/output/tmp.png')
+        os.remove(os.path.join(CWD, 'data/output', 'tmp.png'))
     except:
         print('No output file!')
     image.save('./data/input/tmp.png')
+
     subprocess.run([
         'python3', 
         'evaluate.py',
         '--checkpoint',
-        f'./models/{style_image_name}.ckpt',
+        f'{CWD}/models/{style_image_name}.ckpt',
         '--in-path',
-        './data/input/',
+        os.path.join(CWD, 'data/input/'),
         '--out-path',
-        './data/output/'
+        os.path.join(CWD, 'data/output/')
         ])
-    image = Image.open('./data/output/tmp.png')
+    image = Image.open(os.path.join(CWD, 'data/output', 'tmp.png'))
     st.image(image, caption="Processed Image", use_column_width=True)
     st.markdown(get_image_download_link(image), unsafe_allow_html=True)
