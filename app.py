@@ -44,7 +44,7 @@ if file_up is not None:
 
     # resize, height=512
     im_width, im_height = image.size
-    resize_ratio = np.ceil(im_height/512, dtype=np.int32)
+    resize_ratio = int(np.ceil(im_height/512))
     image = image.resize((im_width*resize_ratio, im_height*resize_ratio), Image.ANTIALIAS)
 
     st.image(image, caption="Uploaded Image", use_column_width=True)
