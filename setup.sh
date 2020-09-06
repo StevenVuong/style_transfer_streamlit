@@ -1,3 +1,7 @@
+# install requirements
+python3 -m pip install tensorflow==2.3.0 --no-cache-dir
+python3 -m pip install -r requirements.txt
+
 # download models
 mkdir ./models
 wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=0B9jhaT37ydSyQU1sYW02Sm9kV3c' -O './models/la_muse.ckpt'

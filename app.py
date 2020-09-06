@@ -40,6 +40,7 @@ if file_up is not None:
 
     # Display image
     image = Image.open(file_up)
+    image.save('./data/input/tmp.png')
     st.image(image, caption="Uploaded Image", use_column_width=True)
 
     st.write("")
