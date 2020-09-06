@@ -8,6 +8,8 @@ from io import BytesIO
 import base64
 import numpy as np
 
+CWD=os.getcwd()
+
 # ignore deprecation warning
 st.set_option('deprecation.showfileUploaderEncoding', False)
 st.title('Style Generator')
@@ -20,7 +22,7 @@ option_two = st.selectbox(
     ('La Muse', 'Rain Princess', 'Scream', 'Udnie', 'Wave', 'Wreck')
     )
 style_image_name = option_two.lower().replace(' ', '_')
-style_image = Image.open(os.path.join('./examples/thumbs', style_image_name+'.jpg'))
+style_image = Image.open(os.path.join(CWD, 'examples/thumbs', style_image_name+'.jpg'))
 st.image(style_image, width=250)
 
 # Upload Image
@@ -42,14 +44,15 @@ if file_up is not None:
     # Display image
     image = Image.open(file_up)
 
-    # resize, height=512
+    ### RESIZE
+    basewidth=512
     im_width, im_height = image.size
-    resize_ratio = int(np.ceil(im_height/512))
-    image = image.resize((im_width*resize_ratio, im_height*resize_ratio), Image.ANTIALIAS)
+    wpercent = (basewidth/float(im_width))
+    hsize = int((float(im_height)*float(wpercent)))
+    image = image.resize((basewidth,hsize), Image.ANTIALIAS)
+    ###
 
     st.image(image, caption="Uploaded Image", use_column_width=True)
-    
-    CWD=os.getcwd()
 
     st.write("")
     st.write("Processing..")
@@ -57,7 +60,7 @@ if file_up is not None:
         os.remove(os.path.join(CWD, 'data/output', 'tmp.png'))
     except:
         print('No output file!')
-    image.save('./data/input/tmp.png')
+    image.save(os.path.join(CWD, 'data/input/tmp.png'))
 
     subprocess.run([
         'python3', 
